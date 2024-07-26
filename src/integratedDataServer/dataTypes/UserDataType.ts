@@ -16,7 +16,7 @@ export type DayType = {
     endOfShiftWin: string;
     dayStart: number;
     dayEnd: number | null;
-    dayClosed: boolean;
+    isDayClosed: boolean;
 };
 
 type UserDataType = {

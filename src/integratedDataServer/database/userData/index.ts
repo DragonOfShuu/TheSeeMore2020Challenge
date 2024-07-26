@@ -3,14 +3,14 @@ import { getKey, setKey } from "../index";
 
 const userDataKey = "user";
 
-export const getUserData = (): UserDataType => {
+export const getUserDataDirectly = (): UserDataType => {
     const dataRetrieval = getKey<UserDataType>(userDataKey);
     if (dataRetrieval !== null) return dataRetrieval;
     return setUserToDefaults();
 };
 
 export const updateUserData = (data: Partial<UserDataType>) => {
-    const currData = getUserData();
+    const currData = getUserDataDirectly();
     const newData = { ...currData, ...data };
     setUserData(newData);
     return newData;
