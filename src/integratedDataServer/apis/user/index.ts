@@ -1,7 +1,11 @@
-import { getUserDataDirectly, setUserData } from "../../database/userData";
+import { getUserDataDirectly, getUserDataDirectlyAsync, setUserDataAsync } from "../../database/userData";
 import UserDataType, { CallType } from "../../dataTypes/UserDataType";
 
 export const getUserDataAsync = (): Promise<UserDataType> => {
+    return getUserDataDirectlyAsync();
+};
+
+export const getUserData = (): UserDataType => {
     return getUserDataDirectly();
 };
 
@@ -70,7 +74,7 @@ const getRecalcDataAsync = async () => {
 }
 
 const recalcAndSetDataAsync = async (data: UserDataType) => {
-    return setUserData(recalculateUserData(data))
+    return setUserDataAsync(recalculateUserData(data))
 }
 
 /**
