@@ -1,4 +1,8 @@
-import { getUserDataDirectly, getUserDataDirectlyAsync, setUserDataAsync } from "../../database/userData";
+import {
+    getUserDataDirectly,
+    getUserDataDirectlyAsync,
+    setUserDataAsync,
+} from "../../database/userData";
 import UserDataType, { CallType } from "../../dataTypes/UserDataType";
 
 export const getUserDataAsync = (): Promise<UserDataType> => {
@@ -71,11 +75,11 @@ const recalculateUserData = (curr: UserDataType): UserDataType => {
 
 const getRecalcDataAsync = async () => {
     return recalculateUserData(await getUserDataAsync());
-}
+};
 
 const recalcAndSetDataAsync = async (data: UserDataType) => {
-    return setUserDataAsync(recalculateUserData(data))
-}
+    return setUserDataAsync(recalculateUserData(data));
+};
 
 /**
  * Adds a call to the current open day. If

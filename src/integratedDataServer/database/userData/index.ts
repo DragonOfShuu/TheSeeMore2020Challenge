@@ -13,7 +13,7 @@ export const getUserDataDirectly = (): UserDataType => {
     const dataRetrieval = getKey<UserDataType>(userDataKey);
     if (dataRetrieval !== null) return dataRetrieval;
     return setUserToDefaults();
-}
+};
 
 export const updateUserData = async (data: Partial<UserDataType>) => {
     const currData = await getUserDataDirectlyAsync();
