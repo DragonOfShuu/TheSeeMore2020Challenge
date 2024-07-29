@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import ThemeDataType from "../../integratedDataServer/dataTypes/ThemeDataType";
+import { setIsLightMode } from "../../integratedDataServer/apis/theme";
 
 export type ThemeDataActionType = { type: "setIsLight"; isLight: boolean };
 
@@ -17,11 +18,17 @@ const useThemeData = () => {
 };
 
 export const ThemeDataReducer = (
-    state: ThemeDataType,
+    prevState: ThemeDataType,
     action: ThemeDataActionType,
 ) => {
-    if (action) null;
-    return state;
+    switch (action.type) {
+        case "setIsLight": {
+            const newState = setIsLightMode(action.isLight);
+            if (JSON.stringify(prevState) === JSON.stringify(newState))
+                return prevState;
+            return newState;
+        }
+    }
 };
 
 export default useThemeData;

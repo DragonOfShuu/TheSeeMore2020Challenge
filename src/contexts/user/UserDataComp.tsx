@@ -1,9 +1,10 @@
 import { ReactNode, useCallback, useState } from "react";
-import { UserDataActionType, UserDataContext } from "./UserDataContext";
 import {
-    addCall,
-    getUserDataAsync,
-} from "../../integratedDataServer/apis/user";
+    UserDataActionType,
+    UserDataContext,
+    userDataReducerAsync,
+} from "./UserDataContext";
+import { getUserDataAsync } from "../../integratedDataServer/apis/user";
 
 type Props = {
     children: ReactNode;
@@ -18,14 +19,10 @@ const UserDataComp = async (props: Props) => {
 
     const userDataDispatch = useCallback(
         async (action: UserDataActionType) => {
-            switch (action.type) {
-                case "addCall": {
-                    const newUserData = await addCall(action.call);
-                    if (!newUserData) return userData;
-                    setUserData(newUserData);
-                    return newUserData;
-                }
-            }
+            const newValue = await userDataReducerAsync(userData, action);
+            if (newValue === userData) return userData;
+            setUserData(newValue);
+            return newValue;
         },
         [userData],
     );

@@ -14,7 +14,9 @@ const ThemeDataComp = async (props: Props) => {
 
     return (
         <ThemeDataContext.Provider value={{ themeData, themeDataDispatch }}>
-            {props.children}
+            <div data-mode={`${themeData.isLight ? "light" : "dark"}`}>
+                {props.children}
+            </div>
         </ThemeDataContext.Provider>
     );
 };
