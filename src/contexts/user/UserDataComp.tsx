@@ -1,36 +1,16 @@
-import { ReactNode, useCallback, useState } from "react";
-import {
-    UserDataActionType,
-    UserDataContext,
-    userDataReducerAsync,
-} from "./UserDataContext";
-import { getUserDataAsync } from "../../integratedDataServer/apis/user";
+import { lazy, ReactNode, Suspense } from "react";
 
 type Props = {
     children: ReactNode;
 };
 
-/**
- * Component that provides the user data.
- * !!! MUST BE LAZY LOADED !!!
- */
-const UserDataComp = async (props: Props) => {
-    const [userData, setUserData] = useState(await getUserDataAsync());
+const UserDataCompLoading = lazy(() => import("./UserDataRaw"));
 
-    const userDataDispatch = useCallback(
-        async (action: UserDataActionType) => {
-            const newValue = await userDataReducerAsync(userData, action);
-            if (newValue === userData) return userData;
-            setUserData(newValue);
-            return newValue;
-        },
-        [userData],
-    );
-
+const UserDataComp = (props: Props) => {
     return (
-        <UserDataContext.Provider value={{ userData, userDataDispatch }}>
-            {props.children}
-        </UserDataContext.Provider>
+        <Suspense fallback={<>Loading...</>}>
+            <UserDataCompLoading>{props.children}</UserDataCompLoading>
+        </Suspense>
     );
 };
 
