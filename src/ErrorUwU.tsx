@@ -1,10 +1,13 @@
 import { FallbackProps } from "react-error-boundary";
+import styles from "./ErrorUwU.module.sass";
 
 type ErrorProps = FallbackProps;
 
 const ErrorUwU = (props: ErrorProps) => {
     return (
-        <div className={`absolute top-0 left-0 size-full bg-cblue-975`}>
+        <div
+            className={`absolute top-0 left-0 size-full bg-cblue-975 text-white ${styles.errorScrollbar}`}
+        >
             <div
                 className={`size-full flex place-content-center place-items-center`}
             >
@@ -17,6 +20,14 @@ const ErrorUwU = (props: ErrorProps) => {
                     >
                         {`${props.error.stack}`}
                     </pre>
+                    <button
+                        className={
+                            "bg-cblue-500 hover:bg-cblue-400 transition-all p-3 rounded-md"
+                        }
+                        onClick={props.resetErrorBoundary}
+                    >
+                        Attempt Reload
+                    </button>
                 </div>
             </div>
         </div>

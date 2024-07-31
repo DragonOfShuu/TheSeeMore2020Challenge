@@ -6,7 +6,7 @@ type Props = {
     children: ReactNode;
 };
 
-const ThemeDataComp = async (props: Props) => {
+const ThemeDataComp = (props: Props) => {
     const [themeData, themeDataDispatch] = useReducer(
         ThemeDataReducer,
         getThemeData(),
