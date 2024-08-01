@@ -1,16 +1,20 @@
 import Button from "../components/Button";
-// import useThemeData from "../contexts/theme/ThemeDataContext"
+import useThemeData from "../contexts/theme/ThemeDataContext";
 
 type Props = {
-    className: string;
+    className?: string;
 };
 
 const ThemeSwitcher = (props: Props) => {
-    // const {themeData, themeDataDispatch} = useThemeData();
+    const { themeData, themeDataDispatch } = useThemeData();
+
+    const handleClick = () => {
+        themeDataDispatch({ type: "setIsLight", isLight: !themeData.isLight });
+    };
 
     return (
         <div className={props.className}>
-            <Button></Button>
+            <Button onClick={handleClick}>Theme</Button>
         </div>
     );
 };

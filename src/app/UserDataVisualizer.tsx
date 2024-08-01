@@ -1,8 +1,4 @@
-// type Props = {
-
 import useUserData from "../contexts/user/UserDataContext";
-
-// }
 
 const UserDataVisualizer = () => {
     const { userData } = useUserData();
