@@ -18,7 +18,9 @@ const MyDayBox = (props: Props) => {
                         <p>My End of Shift Win</p>
                         <TextArea className={`w-full`} />
                     </div>
-                    <div className={`flex flex-col-reverse gap-3 items-stretch`}>
+                    <div
+                        className={`flex flex-col-reverse gap-3 items-stretch`}
+                    >
                         <Button notProminent={true}>{`Skip Today`}</Button>
                         <Button>{`Finish My Day`}</Button>
                     </div>

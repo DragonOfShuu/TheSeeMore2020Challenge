@@ -1,10 +1,12 @@
-
 type Props = {
-    text?: string,
-} & React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+    text?: string;
+} & React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+>;
 
 const Checkbox = (props: Props) => {
-    const {text, ...checkBoxProps} = props;
+    const { text, ...checkBoxProps } = props;
 
     return (
         <div className={props.className}>
@@ -13,7 +15,7 @@ const Checkbox = (props: Props) => {
                 {text}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Checkbox;
