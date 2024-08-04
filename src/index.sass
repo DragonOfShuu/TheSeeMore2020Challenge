@@ -15,6 +15,31 @@
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
 
+*
+    /* width */
+    &::-webkit-scrollbar 
+        width: 10px
+        height: 10px
+
+    /* Track */
+    &::-webkit-scrollbar-track 
+        background-color: transparent
+
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb 
+        @apply bg-cblue-200 dark:bg-cblue-800 rounded-md
+
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover 
+        @apply bg-cblue-100 dark:bg-cblue-700
+
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:active
+        @apply bg-cblue-300 dark:dark:bg-cblue-900
+
 h1
     @apply text-3xl
 
