@@ -13,7 +13,7 @@ const TextInput = forwardRef(
                     <input
                         type={"text"}
                         ref={ref}
-                        className={`${styles.textInputable} dark:bg-cblue-400 dark:border-cblue-300 dark:text-white p-1`}
+                        className={`${styles.textInputable} dark:bg-cblue-900 dark:border-cblue-400 dark:text-white p-1`}
                     />
                 </div>
             </div>

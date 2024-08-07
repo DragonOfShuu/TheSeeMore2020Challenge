@@ -22,6 +22,8 @@ export const isCallSuccessful = (call: CallType) => {
 const updateCallStreak = (curr: UserDataType): UserDataType => {
     const currDay = curr.days?.[0];
 
+    if (!currDay) return curr;
+
     let callStreak = 0;
     for (const call of currDay.calls) {
         if (!isCallSuccessful(call)) break;
@@ -37,7 +39,7 @@ const updateDayClosures = (curr: UserDataType): UserDataType => {
     if (!days.length) return curr;
     const latestDay = days[0];
 
-    if (Date.now() - latestDay.dayStart > 86400000)
+    if ((Date.now() - latestDay.dayStart) > 86400000)
         latestDay.isDayClosed = true;
 
     if (days?.[1]) days[1].isDayClosed = true;
@@ -49,6 +51,10 @@ const updateDayStreak = (curr: UserDataType): UserDataType => {
     const days = curr.days;
     let dayStreak = 0;
     for (const day of days) {
+        if (!day.isDayClosed) { // If it's the current day, let's not count it
+            continue;
+        }
+
         if (day.callStreak < curr.callStreakRqrmnt) break;
         // If the call streak requirement was changed
         // sometime after this day, end the streak
@@ -73,10 +79,19 @@ const recalculateUserData = (curr: UserDataType): UserDataType => {
     return newUserData;
 };
 
-const getRecalcDataAsync = async () => {
+/**
+ * Get the user data and recalculate it
+ * @returns The current, recalculated data
+ */
+export const getRecalcDataAsync = async () => {
     return recalculateUserData(await getUserDataAsync());
 };
 
+/**
+ * Recalculates, then sets the new data inputted
+ * @param data The new data to set it as
+ * @returns The data after recalculation
+ */
 const recalcAndSetDataAsync = async (data: UserDataType) => {
     return setUserDataAsync(recalculateUserData(data));
 };

@@ -43,6 +43,7 @@ export const userDataReducerAsync = async (
             return newUserData;
         }
         case "startDay": {
+            console.log("Awaiting Start Day")
             const newUserData = await startDay();
             return newUserData;
         }

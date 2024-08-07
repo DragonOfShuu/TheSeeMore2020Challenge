@@ -4,14 +4,14 @@ import {
     UserDataContext,
     userDataReducerAsync,
 } from "./UserDataContext";
-import { getUserDataAsync } from "../../integratedDataServer/apis/user";
+import { getRecalcDataAsync as getRecalcUserDataAsync } from "../../integratedDataServer/apis/user";
 import promiseResolver from "../../libs/promiseResolver";
 
 type Props = {
     children: ReactNode;
 };
 
-const data = promiseResolver(getUserDataAsync());
+const data = promiseResolver(getRecalcUserDataAsync());
 
 const UserDataRaw = (props: Props) => {
     const [userData, setUserData] = useState(data.read());

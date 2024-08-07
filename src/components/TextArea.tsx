@@ -9,7 +9,7 @@ const TextArea = forwardRef(
     (props: Props, ref: React.ForwardedRef<HTMLTextAreaElement>) => {
         return (
             <div className={props.className}>
-                <textarea ref={ref} className={`${styles.textInputable} p-1 dark:bg-cblue-400 dark:border-cblue-300 dark:text-white`} />
+                <textarea ref={ref} className={`${styles.textInputable} p-1 dark:bg-cblue-900 dark:border-cblue-400 dark:text-white`} />
             </div>
         );
     },
