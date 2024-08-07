@@ -65,10 +65,10 @@ const MyCallBox = (props: Props) => {
 
     const reset = () => {
         setChecks((c)=> {
-            const x = Object.entries(c).reduce<Partial<Checks>>((prev, curr) => {
-                return {...prev, [curr[0] as keyof Checks]: false};
-            }, {})
-            return x as Checks
+            return Object.keys(c).reduce<Partial<Checks>>((prev, curr) => { 
+                prev[curr as keyof Checks] = false
+                return prev
+            }, {}) as Checks;
         })
         if (eoshiftwin.current)
             eoshiftwin.current.value = ``;
