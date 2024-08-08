@@ -39,7 +39,7 @@ const updateDayClosures = (curr: UserDataType): UserDataType => {
     if (!days.length) return curr;
     const latestDay = days[0];
 
-    if ((Date.now() - latestDay.dayStart) > 86400000)
+    if (Date.now() - latestDay.dayStart > 86400000)
         latestDay.isDayClosed = true;
 
     if (days?.[1]) days[1].isDayClosed = true;
@@ -51,7 +51,8 @@ const updateDayStreak = (curr: UserDataType): UserDataType => {
     const days = curr.days;
     let dayStreak = 0;
     for (const day of days) {
-        if (!day.isDayClosed) { // If it's the current day, let's not count it
+        if (!day.isDayClosed) {
+            // If it's the current day, let's not count it
             continue;
         }
 

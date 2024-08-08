@@ -4,6 +4,7 @@ type Props = {
     className?: string;
     name: string;
     children?: ReactNode;
+    error?: string;
 };
 
 const DataBoxBase = (props: Props) => {
@@ -14,6 +15,15 @@ const DataBoxBase = (props: Props) => {
             >
                 <h1 className={`text-5xl`}>{props.name}</h1>
                 <div className={`flex-grow`}>{props.children}</div>
+                {!props.error ? (
+                    <></>
+                ) : (
+                    <div
+                        className={`p-3 bg-red-500 border-red-800 border-2 rounded-md`}
+                    >
+                        {props.error}
+                    </div>
+                )}
             </div>
         </div>
     );
