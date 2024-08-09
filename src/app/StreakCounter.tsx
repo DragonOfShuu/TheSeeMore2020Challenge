@@ -10,7 +10,7 @@ const StreakCounter = (props: Props) => {
     return (
         <div className={props.className}>
             <div className={`size-full flex flex-col text-center`}>
-                <h1 className={`text-6xl`}>{userData.dayStreak}</h1>
+                <h1 className={`text-6xl lg:text-9xl`}>{userData.dayStreak}</h1>
                 <p>Daily Streak</p>
             </div>
         </div>
