@@ -81,7 +81,7 @@ const MyDayBox = (props: Props) => {
                 </DataBoxBase>
             ) : (
                 <div
-                    className={`flex flex-col items-center place-content-center`}
+                    className={`flex flex-col items-center place-content-center place-items-center h-full`}
                 >
                     <Button onClick={startDay}>{`Start Day`}</Button>
                 </div>
