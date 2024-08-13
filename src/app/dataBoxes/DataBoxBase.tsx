@@ -11,7 +11,7 @@ const DataBoxBase = (props: Props) => {
     return (
         <div className={props.className}>
             <div
-                className={`flex flex-col items-stretch p-5 gap-2 rounded-3xl text-white bg-cblue-300/70 dark:bg-cblue-950`}
+                className={`flex flex-col items-stretch p-5 gap-2 rounded-3xl text-white bg-cblue-300/70 dark:bg-cblue-950/50 backdrop-blur-sm`}
             >
                 <h1 className={`text-5xl`}>{props.name}</h1>
                 <div className={`flex-grow`}>{props.children}</div>
