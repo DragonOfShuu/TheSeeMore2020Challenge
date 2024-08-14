@@ -1,0 +1,13 @@
+@keyframes playfulRotate
+    0%
+        transform: rotate(0)
+    50%
+        transform: rotate(35deg)
+    100%
+        transform: rotate(0)
+
+.icon
+    animation: 1s ease-in-out alternate infinite playfulRotate paused
+    
+    &:hover
+        animation-play-state: running

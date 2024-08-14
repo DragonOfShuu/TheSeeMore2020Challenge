@@ -4,6 +4,8 @@ import TextArea from "../../components/TextArea";
 import TextInput from "../../components/TextInput";
 import useUserData from "../../contexts/user/UserDataContext";
 import DataBoxBase from "./DataBoxBase";
+import useTempState from "../../components/hooks/useTempData";
+import YesNoDialog from "../../components/YesNoDialog";
 
 type Props = {
     className?: string;
@@ -13,7 +15,8 @@ const MyDayBox = (props: Props) => {
     const { userData, userDataDispatch } = useUserData();
     const encourWord = useRef<HTMLInputElement>(null);
     const eoshiftwin = useRef<HTMLTextAreaElement>(null);
-    const [error, setError] = useState<string>("");
+    const [error, setError] = useTempState('', 5000)
+    const [resetBoxesDialogOpen, setResetBoxesDialogOpen] = useState(false);
 
     const currDayOpen = userData.days.length && !userData.days[0].isDayClosed;
 
@@ -58,10 +61,18 @@ const MyDayBox = (props: Props) => {
         });
     };
 
+    const handleResetBoxesResponse = (positive: boolean) => {
+        if (positive) {
+            reset()
+        }
+        setResetBoxesDialogOpen(false)
+    }
+
     return (
         <div className={props.className}>
+            <YesNoDialog isOpen={resetBoxesDialogOpen} question={`Are you sure you want to reset the boxes?`} responseCallback={handleResetBoxesResponse} />
             {currDayOpen ? (
-                <DataBoxBase name={`My Day`} error={error}>
+                <DataBoxBase name={`My Day`} error={error??undefined}>
                     <div className={`grid gap-4 md:grid-flow-col`}>
                         <div className={`flex flex-col items-stretch gap-1`}>
                             <p>My Encouraging Word</p>
@@ -72,7 +83,7 @@ const MyDayBox = (props: Props) => {
                         <div
                             className={`flex flex-col justify-end gap-3 items-stretch`}
                         >
-                            <Button onClick={reset} notProminent={true}>{`Reset Boxes`}</Button>
+                            <Button onClick={()=> setResetBoxesDialogOpen(true)} notProminent={true}>{`Reset Boxes`}</Button>
                             <Button
                                 onClick={submitDay}
                             >{`Finish My Day`}</Button>
