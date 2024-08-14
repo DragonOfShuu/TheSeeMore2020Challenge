@@ -1,5 +1,7 @@
-import Button from "../components/Button";
+import MoonLineIcon from "../components/svgs/MoonLineIcon";
+import SunLineIcon from "../components/svgs/SunLineIcon";
 import useThemeData from "../contexts/theme/ThemeDataContext";
+import styles from './../components/svgs/LineArtIcons.module.sass'
 
 type Props = {
     className?: string;
@@ -13,9 +15,14 @@ const ThemeSwitcher = (props: Props) => {
     };
 
     return (
-        <div className={props.className}>
-            <Button onClick={handleClick}>Theme</Button>
-        </div>
+        <button onClick={handleClick} className={`${props.className} ${styles.lineArtIcon}`}>
+            {
+                themeData.isLight?
+                    <SunLineIcon className={`w-auto h-full`} />
+                :
+                    <MoonLineIcon className={`w-auto h-full`} />
+            }
+        </button>
     );
 };
 

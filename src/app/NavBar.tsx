@@ -9,7 +9,7 @@ const NavBar = () => {
             <div className={`flex flex-row items-center size-full p-2`}>
                 <img src={contactsLogo} className={`object-contain h-7`} />
                 <div className={`flex-grow`} />
-                <ThemeSwitcher />
+                <ThemeSwitcher className={`h-7 object-contain w-auto`} />
             </div>
         </nav>
     );
