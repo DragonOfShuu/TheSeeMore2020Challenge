@@ -16,5 +16,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 </UserDataComp>
             </ThemeDataComp>
         </ErrorBoundary>
-    </React.StrictMode>,
+    </React.StrictMode>
 );

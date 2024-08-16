@@ -26,19 +26,19 @@ const HomeScreen = (props: Props) => {
                 currDay ?
                     <>
                         <div className={`absolute max-xl:hidden`}>
-                            <h2 className={`relative -top-9 -left-16 text-cblue-900/40 -z-10 text-6xl font-mono`}>
+                            <h2 className={`relative -top-9 -left-16 text-cblue-900/40 -z-10 text-6xl font-mono ${styles.blinkOn}`}>
                                 2020 CHALLENGE
                             </h2>
                         </div>
                         {/* Arranges this content like a grid */}
                         <div className={`size-full flex flex-col gap-6 lg:flex-row-reverse lg:justify-center lg:gap-2 items-stretch`}>
-                            <div className={`flex flex-col justify-around lg:w-1/2`}>
+                            <div className={`flex flex-col justify-around lg:w-1/2 ${styles.topScreenToPosition}`}>
                                 <StreakCounter />
                                 <ChallengeMark2020 className={`object-contain p-8 max-lg:hidden`} />
                             </div>
                             <div className={`flex flex-col items-stretch gap-4 w-full lg:w-1/2`}>
-                                <MyDayBox />
-                                <MyCallBox />
+                                <MyDayBox className={`${styles.bottomScreenToPosition}`} />
+                                <MyCallBox className={`${styles.bottomScreenToPosition}`} />
                             </div>
                         </div>
                     </>

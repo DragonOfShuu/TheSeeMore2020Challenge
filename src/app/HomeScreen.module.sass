@@ -1,17 +1,37 @@
 @keyframes topToCenter
     0%
-        transform: translateY(-100vh)
+        transform: translateY(-100px)
+        opacity: 0
     100%
         transform: translateY(0)
+        opacity: 1
 
 @keyframes bottomToCenter
     0%
-        transform: translateY(100vh)
+        transform: translateY(100px)
+        opacity: 0
     100%
         transform: translateY(0)
+        opacity: 1
+
+@keyframes blinkOnAnim
+    0%
+        opacity: 0
+    33%
+        opacity: 1
+    66%
+        opacity: 0.5
+    100%
+        opacity: 1
+
+
     
 .topScreenToPosition
-    animation: 1s ease-in topToCenter
+    animation: 0.5s ease-in topToCenter
 
 .bottomScreenToPosition
-    animation: 1s ease-in bottomToCenter
+    animation: 0.5s ease-in bottomToCenter
+
+.blinkOn
+    opacity: 0
+    animation: 0.6s steps(5, jump-end) 1s both blinkOnAnim
