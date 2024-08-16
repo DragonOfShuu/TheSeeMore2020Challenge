@@ -6,23 +6,20 @@ import useUserData from "../../contexts/user/UserDataContext";
 import DataBoxBase from "./DataBoxBase";
 import useTempState from "../../components/hooks/useTempData";
 import YesNoDialog from "../../components/YesNoDialog";
+import useCurrentDay from "../../components/hooks/useCurrentDay";
 
 type Props = {
     className?: string;
 };
 
 const MyDayBox = (props: Props) => {
-    const { userData, userDataDispatch } = useUserData();
+    const { userDataDispatch } = useUserData();
     const encourWord = useRef<HTMLInputElement>(null);
     const eoshiftwin = useRef<HTMLTextAreaElement>(null);
     const [error, setError] = useTempState('', 5000)
     const [resetBoxesDialogOpen, setResetBoxesDialogOpen] = useState(false);
 
-    const currDayOpen = userData.days.length && !userData.days[0].isDayClosed;
-
-    const startDay = () => {
-        userDataDispatch({ type: "startDay" });
-    };
+    const currDay = useCurrentDay();
 
     const _verifyText = (
         encourText: string,
@@ -68,35 +65,31 @@ const MyDayBox = (props: Props) => {
         setResetBoxesDialogOpen(false)
     }
 
+    console.log('curr day is: ', currDay)
+    if (!currDay) return null;
+
     return (
         <div className={props.className}>
             <YesNoDialog isOpen={resetBoxesDialogOpen} question={`Are you sure you want to reset the boxes?`} responseCallback={handleResetBoxesResponse} />
-            {currDayOpen ? (
-                <DataBoxBase name={`My Day`} error={error??undefined}>
-                    <div className={`grid gap-4 md:grid-flow-col`}>
-                        <div className={`flex flex-col items-stretch gap-1`}>
-                            <p>My Encouraging Word</p>
-                            <TextInput className={`w-full`} ref={encourWord} />
-                            <p>My End of Shift Win</p>
-                            <TextArea className={`w-full`} ref={eoshiftwin} />
-                        </div>
-                        <div
-                            className={`flex flex-col justify-end gap-3 items-stretch`}
-                        >
-                            <Button onClick={()=> setResetBoxesDialogOpen(true)} notProminent={true}>{`Reset Boxes`}</Button>
-                            <Button
-                                onClick={submitDay}
-                            >{`Finish My Day`}</Button>
-                        </div>
+            <DataBoxBase name={`My Day`} error={error ?? undefined}>
+                <div className={`grid gap-4 md:grid-flow-col`}>
+                    <div className={`flex flex-col items-stretch gap-1`}>
+                        <p>My Encouraging Word</p>
+                        <TextInput className={`w-full`} ref={encourWord} />
+                        <p>My End of Shift Win</p>
+                        <TextArea className={`w-full`} ref={eoshiftwin} />
                     </div>
-                </DataBoxBase>
-            ) : (
-                <div
-                    className={`flex flex-col items-center place-content-center place-items-center h-full`}
-                >
-                    <Button onClick={startDay}>{`Start Day`}</Button>
+                    <div
+                        className={`flex flex-col justify-end gap-3 items-stretch`}
+                    >
+                        <p>{`Calls Today: ${currDay?.calls.length}`}</p>
+                        <Button onClick={() => setResetBoxesDialogOpen(true)} notProminent={true}>{`Reset Boxes`}</Button>
+                        <Button
+                            onClick={submitDay}
+                        >{`Finish My Day`}</Button>
+                    </div>
                 </div>
-            )}
+            </DataBoxBase>
         </div>
     );
 };

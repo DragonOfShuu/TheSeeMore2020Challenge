@@ -7,22 +7,29 @@ type Props = {
     close: ()=>unknown,
 }
 
+const useOpenDialog = (dialog: React.RefObject<HTMLDialogElement>, open: boolean) => {
+    useEffect(()=> {
+        console.log("OpenDialog ran")
+        if (open) {
+            dialog.current?.showModal?.();
+        } else {
+            dialog.current?.close();
+        }
+    }, [dialog, open])
+
+    return null;
+}
+
 const BaseDialog = (props: Props) => {
     const internalDialog = useRef<HTMLDialogElement>(null);
 
-    useEffect(()=> {
-        if (props.open) {
-            internalDialog.current?.showModal?.();
-        } else if (!props.open) {
-            internalDialog.current?.close();
-        }
-    }, [props.open])
+    useOpenDialog(internalDialog, props.open)
 
     return (
         <dialog ref={internalDialog} className={styles.baseDialog}>
             <div className={`flex flex-col gap-4`}>
                 <div className={`flex justify-end h-2`}>
-                    <button onClick={() => internalDialog.current?.close()}>
+                    <button onClick={() => props.close()}>
                         X
                     </button>
                 </div>

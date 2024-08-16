@@ -7,6 +7,7 @@ export type CallType = {
     postedSalesInChat: boolean;
     extraInfo: string;
     completionDate: number;
+    version?: 'v1'
 };
 
 export type DayType = {
@@ -17,6 +18,7 @@ export type DayType = {
     dayStart: number;
     dayEnd: number | null;
     isDayClosed: boolean;
+    version?: 'v1'
 };
 
 type UserDataType = {
@@ -24,6 +26,7 @@ type UserDataType = {
     dayStreak: number;
     callStreakRqrmnt: number;
     callStreakLstUpdte: number; // An epoch date
+    version?: 'v1'
 };
 
 export default UserDataType;

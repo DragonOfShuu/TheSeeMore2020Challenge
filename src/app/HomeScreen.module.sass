@@ -1,0 +1,17 @@
+@keyframes topToCenter
+    0%
+        transform: translateY(-100vh)
+    100%
+        transform: translateY(0)
+
+@keyframes bottomToCenter
+    0%
+        transform: translateY(100vh)
+    100%
+        transform: translateY(0)
+    
+.topScreenToPosition
+    animation: 1s ease-in topToCenter
+
+.bottomScreenToPosition
+    animation: 1s ease-in bottomToCenter
