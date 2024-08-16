@@ -16,7 +16,7 @@ const MyDayBox = (props: Props) => {
     const { userDataDispatch } = useUserData();
     const encourWord = useRef<HTMLInputElement>(null);
     const eoshiftwin = useRef<HTMLTextAreaElement>(null);
-    const [error, setError] = useTempState('', 5000)
+    const [error, setError] = useTempState("", 5000);
     const [resetBoxesDialogOpen, setResetBoxesDialogOpen] = useState(false);
 
     const currDay = useCurrentDay();
@@ -31,8 +31,7 @@ const MyDayBox = (props: Props) => {
     };
 
     const reset = () => {
-        if (!encourWord.current || !eoshiftwin.current)
-            return;
+        if (!encourWord.current || !eoshiftwin.current) return;
         encourWord.current.value = ``;
         eoshiftwin.current.value = ``;
     };
@@ -60,17 +59,21 @@ const MyDayBox = (props: Props) => {
 
     const handleResetBoxesResponse = (positive: boolean) => {
         if (positive) {
-            reset()
+            reset();
         }
-        setResetBoxesDialogOpen(false)
-    }
+        setResetBoxesDialogOpen(false);
+    };
 
-    console.log('curr day is: ', currDay)
+    console.log("curr day is: ", currDay);
     if (!currDay) return null;
 
     return (
         <div className={props.className}>
-            <YesNoDialog isOpen={resetBoxesDialogOpen} question={`Are you sure you want to reset the boxes?`} responseCallback={handleResetBoxesResponse} />
+            <YesNoDialog
+                isOpen={resetBoxesDialogOpen}
+                question={`Are you sure you want to reset the boxes?`}
+                responseCallback={handleResetBoxesResponse}
+            />
             <DataBoxBase name={`My Day`} error={error ?? undefined}>
                 <div className={`grid gap-4 md:grid-flow-col`}>
                     <div className={`flex flex-col items-stretch gap-1`}>
@@ -83,10 +86,11 @@ const MyDayBox = (props: Props) => {
                         className={`flex flex-col justify-end gap-3 items-stretch`}
                     >
                         <p>{`Calls Today: ${currDay?.calls.length}`}</p>
-                        <Button onClick={() => setResetBoxesDialogOpen(true)} notProminent={true}>{`Reset Boxes`}</Button>
                         <Button
-                            onClick={submitDay}
-                        >{`Finish My Day`}</Button>
+                            onClick={() => setResetBoxesDialogOpen(true)}
+                            notProminent={true}
+                        >{`Reset Boxes`}</Button>
+                        <Button onClick={submitDay}>{`Finish My Day`}</Button>
                     </div>
                 </div>
             </DataBoxBase>

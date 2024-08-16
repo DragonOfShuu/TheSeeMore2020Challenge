@@ -30,11 +30,11 @@ export const userDataReducerAsync = async (
 ): Promise<UserDataType> => {
     switch (action.type) {
         case "addCall": {
-            console.log("Adding call...")
+            console.log("Adding call...");
             const newUserData = await addCall(action.call);
-            console.log("New userdata after adding call: ", newUserData)
+            console.log("New userdata after adding call: ", newUserData);
             if (!newUserData) return prevState;
-            console.log("Returning new userdata after adding call...")
+            console.log("Returning new userdata after adding call...");
             return newUserData;
         }
         case "closeDay": {

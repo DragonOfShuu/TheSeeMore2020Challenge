@@ -8,7 +8,7 @@ const useTempData = <T>(
 ): [T | null, (newState: T) => void] => {
     const [data, _setData] = useState<{ data: T | null }>({ data: initData });
 
-    const assumedResortTo = resortTo===undefined?initData:resortTo
+    const assumedResortTo = resortTo === undefined ? initData : resortTo;
 
     useEffect(() => {
         if (data.data === resortTo) return;

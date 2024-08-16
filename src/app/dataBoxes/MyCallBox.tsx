@@ -90,15 +90,19 @@ const MyCallBox = (props: Props) => {
     };
 
     const handleResetResponse = (positive: boolean) => {
-        if (positive) reset()
+        if (positive) reset();
         setShowResetDialog(false);
-    }
+    };
 
     if (!userData.days.length || userData.days[0].isDayClosed) return null;
 
     return (
         <div className={props.className}>
-            <YesNoDialog isOpen={showResetDialog} question={`Are you sure you want to reset the boxes?`} responseCallback={handleResetResponse} />
+            <YesNoDialog
+                isOpen={showResetDialog}
+                question={`Are you sure you want to reset the boxes?`}
+                responseCallback={handleResetResponse}
+            />
             <DataBoxBase name={`My Call`}>
                 <div className={`grid gap-4 md:grid-flow-col`}>
                     <MyCallCheckboxes checks={checks} setChecks={setChecks} />
@@ -108,7 +112,10 @@ const MyCallBox = (props: Props) => {
                         <p>{`Extra Info`}</p>
                         <TextArea ref={extraInfo} className={`w-full`} />
                         <div className={`flex flex-col items-stretch gap-3`}>
-                            <Button notProminent onClick={() => setShowResetDialog(true)}>
+                            <Button
+                                notProminent
+                                onClick={() => setShowResetDialog(true)}
+                            >
                                 Reset Boxes
                             </Button>
                             <Button onClick={submit}>Submit Call</Button>

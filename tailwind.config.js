@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     // darkMode: "selector",
-    darkMode: ['selector', '[data-theme-mode="dark"]'],
+    darkMode: ["selector", '[data-theme-mode="dark"]'],
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {

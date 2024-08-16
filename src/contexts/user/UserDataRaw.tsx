@@ -19,7 +19,7 @@ const UserDataRaw = (props: Props) => {
     const userDataDispatch = useCallback(
         async (action: UserDataActionType) => {
             const newValue = await userDataReducerAsync(userData, action);
-            console.log("New value received after reducer: ", newValue)
+            console.log("New value received after reducer: ", newValue);
             if (newValue === userData) return userData;
             setUserData(newValue);
             return newValue;

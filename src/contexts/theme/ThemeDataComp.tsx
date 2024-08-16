@@ -15,7 +15,10 @@ const ThemeDataComp = (props: Props) => {
     useEffect(() => {
         const x = document.getElementsByTagName("html");
         if (!x.length) return;
-        x[0].setAttribute('data-theme-mode', themeData.isLight?'light':'dark')
+        x[0].setAttribute(
+            "data-theme-mode",
+            themeData.isLight ? "light" : "dark",
+        );
     }, [themeData.isLight]);
 
     return (
