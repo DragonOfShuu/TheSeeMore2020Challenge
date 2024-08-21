@@ -64,7 +64,7 @@ const MyDayBox = (props: Props) => {
         setResetBoxesDialogOpen(false);
     };
 
-    console.log("curr day is: ", currDay);
+    // console.log("curr day is: ", currDay);
     if (!currDay) return null;
 
     return (

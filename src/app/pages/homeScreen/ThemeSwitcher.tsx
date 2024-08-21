@@ -1,7 +1,7 @@
-import MoonLineIcon from "../components/svgs/MoonLineIcon";
-import SunLineIcon from "../components/svgs/SunLineIcon";
-import useThemeData from "../contexts/theme/ThemeDataContext";
-import lineartstyles from "./../components/svgs/LineArtIcons.module.sass";
+import MoonLineIcon from "../../../components/svgs/MoonLineIcon";
+import SunLineIcon from "../../../components/svgs/SunLineIcon";
+import useThemeData from "../../../contexts/theme/ThemeDataContext";
+import lineartstyles from "./../../../components/svgs/LineArtIcons.module.sass";
 import styles from "./ThemeSwitcher.module.sass";
 
 type Props = {

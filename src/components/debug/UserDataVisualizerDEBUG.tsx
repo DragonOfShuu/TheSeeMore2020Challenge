@@ -1,4 +1,4 @@
-import useUserData from "../contexts/user/UserDataContext";
+import useUserData from "../../contexts/user/UserDataContext";
 
 const UserDataVisualizer = () => {
     const { userData } = useUserData();

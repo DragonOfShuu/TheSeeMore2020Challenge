@@ -1,4 +1,4 @@
-import useThemeData from "../contexts/theme/ThemeDataContext";
+import useThemeData from "../../contexts/theme/ThemeDataContext";
 
 const ThemeDataVisualizer = () => {
     const { themeData } = useThemeData();
