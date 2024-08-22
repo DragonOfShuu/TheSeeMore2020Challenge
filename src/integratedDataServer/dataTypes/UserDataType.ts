@@ -1,10 +1,13 @@
-export type CallType = {
+export type CallCompletionType = {
     verifiedPrescription: boolean;
     guarantee: boolean;
     valueAddedOffer: boolean;
     subscription: boolean;
     verifiedECPDialog: boolean;
     postedSalesInChat: boolean;
+}
+
+export type CallType = CallCompletionType & {
     extraInfo: string;
     completionDate: number;
     version?: "v1";

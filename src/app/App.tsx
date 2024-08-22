@@ -10,7 +10,7 @@ function App() {
             {/* Covers the screen height */}
             <div className={`w-full min-h-screen h-screen flex flex-col`}>
                 {/* Excludes the nav bar, and adds margins */}
-                <div className={`mt-14 px-2 py-4 size-full`}>
+                <div className={`pt-14 pb-12 px-2 size-full`}>
                     {/* <HomeScreen /> */}
                     <PageSwitcher />
                 </div>

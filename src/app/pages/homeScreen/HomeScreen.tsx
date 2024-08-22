@@ -22,9 +22,9 @@ const HomeScreen = () => {
 
     return (
         <div
-            className={`flex flex-col place-content-center size-full xl:px-64`}
+            className={`flex flex-col md:justify-center size-full pt-4 xl:px-64`}
         >
-            <div>
+            <div className={``}>
                 {currDay ? (
                     <>
                         <div className={`absolute max-xl:hidden`}>

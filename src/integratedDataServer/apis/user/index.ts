@@ -3,7 +3,7 @@ import {
     getUserDataDirectlyAsync,
     setUserDataAsync,
 } from "../../database/userData";
-import UserDataType, { CallType } from "../../dataTypes/UserDataType";
+import UserDataType, { CallCompletionType, CallType } from "../../dataTypes/UserDataType";
 
 export const getUserDataAsync = (): Promise<UserDataType> => {
     return getUserDataDirectlyAsync();
@@ -14,10 +14,14 @@ export const getUserData = (): UserDataType => {
 };
 
 export const isCallSuccessful = (call: CallType) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { extraInfo, completionDate, ...actuallyImportant } = call;
-    return Object.values(actuallyImportant).every((x) => x);
+    return Object.values(extractCallCompletion(call)).every((x) => x);
 };
+
+export const extractCallCompletion = (call: CallType): CallCompletionType => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { extraInfo, completionDate, version, ...actuallyImportant } = call;
+    return actuallyImportant as CallCompletionType;
+}
 
 const updateCallStreak = (curr: UserDataType): UserDataType => {
     const currDay = curr.days?.[0];
